@@ -49,11 +49,11 @@ def _make_move(f1, r1, f2, r2, side):
         x2_click = side * (2 * ff + 1) * SQ_SIZE / 2
         y2_click = side * (2 * rr - 1) * SQ_SIZE / 2
 
-    pyautogui.click(BOARD_CENTER_X + x1_click,
-                    BOARD_CENTER_Y - y1_click)
+    pyautogui.moveTo(BOARD_CENTER_X + x1_click,
+                     BOARD_CENTER_Y - y1_click)
 
-    pyautogui.click(BOARD_CENTER_X + x2_click,
-                    BOARD_CENTER_Y - y2_click)
+    pyautogui.dragTo(BOARD_CENTER_X + x2_click,
+                     BOARD_CENTER_Y - y2_click, button="left")
 
 
 def make_move_on_window(engine_move, player_color):
@@ -108,6 +108,10 @@ while 1:
                     width = int(b.size["width"])
 
                     make_move_on_window(best_move, player_color)
+            elif len(new_moves) == 0:
+                print("\nresetting bot...")
+                board = chess.Board()
+                moves = []
         except Exception as e:
             #print("WARNING: something bad happened:", e)
             pass
