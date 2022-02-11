@@ -1,4 +1,3 @@
-from curses import KEY_B2
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
