@@ -84,9 +84,6 @@ while 1:
         new_moves = [html.contents for html in new_moves_html]
 
         try:
-            b = driver.find_element_by_xpath(
-                '//*[@id="main-wrap"]/main/div[1]/div[1]/div/cg-container')
-
             if len(new_moves) > len(moves):
                 if len(new_moves) == len(moves)+1:
                     moves.append(new_moves[-1][0])
@@ -103,8 +100,6 @@ while 1:
                         board, chess.engine.Limit(time=.5)).move
                     print(
                         f"move: {moves[-1]}, best move: {best_move}")
-
-                    width = int(b.size["width"])
 
                     make_move_on_window(best_move, player_color)
             elif len(new_moves) == 0:
