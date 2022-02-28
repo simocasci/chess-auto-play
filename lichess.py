@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 import chess
 import chess.engine
 import pyautogui
+import time
+import random
 
 START_URL = "https://lichess.org/"
 ENGINE_PATH = "stockfish/14.1/bin/stockfish"
@@ -69,6 +71,10 @@ def make_move_on_window(engine_move, player_color):
                to_square_file, to_square_rank, player_color)
 
 
+def random_sleep():
+    time.sleep(random.uniform(0.5, 1.5))
+
+
 while 1:
     try:
         html = driver.execute_script(
@@ -100,7 +106,7 @@ while 1:
                         board, chess.engine.Limit(time=.5)).move
                     print(
                         f"move: {moves[-1]}, best move: {best_move}")
-
+                    random_sleep()
                     make_move_on_window(best_move, player_color)
             elif len(new_moves) == 0:
                 print("\nresetting bot...")
