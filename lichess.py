@@ -72,7 +72,7 @@ def make_move_on_window(engine_move, player_color):
 
 
 def random_sleep():
-    time.sleep(random.uniform(0.5, 1.5))
+    time.sleep(random.uniform(0.05, 0.5))
 
 
 while 1:
