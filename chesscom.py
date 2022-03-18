@@ -127,7 +127,6 @@ while 1:
                         lm_contents[-1]
 
             if last_move is not None:
-                print(last_move)
                 board.push_san(last_move)
                 if board.turn == chess.WHITE and player_color == 1 or board.turn == chess.BLACK and player_color == -1:
                     best_move = engine.play(
