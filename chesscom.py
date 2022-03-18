@@ -79,7 +79,7 @@ def parse_clock_time(clock_time):
 
 board = chess.Board()
 player_color = 1 if 'ww' in input("What's your color? ") else -1
-white_clock, black_clock = 10, 10
+white_clock, black_clock = 60, 60
 time.sleep(1)
 
 while 1:
@@ -119,12 +119,15 @@ while 1:
                 last_move = lm_contents[0]
 
             elif len(lm_contents) == 2:
-                if len(lm_contents[0]) < len(lm_contents[1]):
-                    last_move = lm_contents[0] + \
-                        lm_contents[1]["data-figurine"]
-                else:
+                if len(str(lm_contents[0])) > len(str(lm_contents[1])):
                     last_move = lm_contents[0]["data-figurine"] + \
-                        lm_contents[-1]
+                        lm_contents[1]
+                else:
+                    if "=" in str(lm_contents[0]):
+                        last_move = lm_contents[0] + \
+                            lm_contents[1]["data-figurine"]
+                    else:
+                        last_move = lm_contents[0]
 
             if last_move is not None:
                 board.push_san(last_move)
