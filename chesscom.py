@@ -78,15 +78,15 @@ def parse_clock_time(clock_time):
 
 
 board = chess.Board()
-player_color = int(input("What's your color? "))
-white_clock, black_clock = 1, 1
+player_color = 1 if 'ww' in input("What's your color? ") else -1
+white_clock, black_clock = 10, 10
 time.sleep(1)
 
 while 1:
     try:
         if keyboard.is_pressed("Esc"):
             board = chess.Board()
-            player_color = int(input("What's your color? "))
+            player_color = 1 if 'ww' in input("What's your color? ") else -1
             time.sleep(1)
 
         html = driver.execute_script(
@@ -118,13 +118,16 @@ while 1:
             if len(lm_contents) == 1:
                 last_move = lm_contents[0]
 
-                if len(last_move) == 2 and (last_move[-1] == "8" or last_move[-1] == "1"):
-                    last_move += 'Q'
-
-            elif len(lm_contents) > 1:
-                last_move = lm_contents[0]["data-figurine"] + lm_contents[-1]
+            elif len(lm_contents) == 2:
+                if len(lm_contents[0]) < len(lm_contents[1]):
+                    last_move = lm_contents[0] + \
+                        lm_contents[1]["data-figurine"]
+                else:
+                    last_move = lm_contents[0]["data-figurine"] + \
+                        lm_contents[-1]
 
             if last_move is not None:
+                print(last_move)
                 board.push_san(last_move)
                 if board.turn == chess.WHITE and player_color == 1 or board.turn == chess.BLACK and player_color == -1:
                     best_move = engine.play(
@@ -132,6 +135,7 @@ while 1:
                     make_move_on_window(best_move, player_color)
 
     except Exception as e:
+        print('\n')
         print(e)
         print('\nTerminating...')
         break
