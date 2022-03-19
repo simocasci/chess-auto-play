@@ -138,6 +138,8 @@ while 1:
 
     except Exception as e:
         print('\n')
+        print(last_move_html)
+        print(lm_contents)
         print(e)
         print('\nTerminating...')
         break
