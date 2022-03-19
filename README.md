@@ -13,3 +13,7 @@
 4. Win every game
     - Automatic engine reload on Lichess
     - Press ESC to reload engine on Chess.com
+
+**Note**: Could you use it for online games? Yes. Should you do it? No, it's cheating.
+
+**Demo**: https://www.youtube.com/watch?v=n9tvWGMO2Tk
