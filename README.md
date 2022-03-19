@@ -1,5 +1,3 @@
-# How to use it
-
 1. Run one of the scripts
     - python3 lichess.py
     - sudo python3 chesscom.py
